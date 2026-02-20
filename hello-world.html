@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <link rel="stylesheet" href="hello-world.css">
+</head>
+<body>
+    <nav class="navbar">
+        <span class="logo">SNOW<sup>z</sup></span>
+        <button class="hamburger" type="button" aria-expanded="false" aria-controls="nav-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-menu" id="nav-menu">
+            <a href="#">Explore Mountains</a>
+            <a href="#">Set A Budget</a>
+            <a href="#">Plan The Trip</a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="card">
+            <div class="world-icon">
+                <img src="ac17d3aa57c7c536a88fdf55a1409a00.jpg" alt="Profile" class="circle-image">
+            </div>
+            <h1>SNOW<sup>z</sup> UP</h1>
+            <p class="sub-copy">Snows Up is a snowboarding travel hub that helps riders discover top destinations, plan seamless mountain getaways, and chase the best snow conditions around the world.</p>
+            <button class="contact-btn">Find Your Mountain</button>
+        </div>
+    </div>
+    <section class="destinations">
+        <p class="destinations-subhead">Choose a destination.</p>
+        <div class="destination-grid">
+            <div class="destination-card">
+                <div class="destination-image"><img src="1.jpg" alt="West"></div>
+                <h3>West</h3>
+                <button class="destination-btn">EAZY BREEZY</button>
+            </div>
+            <div class="destination-card">
+                <div class="destination-image"><img src="2.jpeg" alt="Central"></div>
+                <h3>Central</h3>
+                <button class="destination-btn">Go big</button>
+            </div>
+            <div class="destination-card">
+                <div class="destination-image"><img src="3.jpeg" alt="East"></div>
+                <h3>East</h3>
+                <button class="destination-btn">Wicked</button>
+            </div>
+        </div>
+    </section>
+    <div class="gondola">
+        <div class="gondola-carrier">
+            <div class="gondola-line"></div>
+            <div class="gondola-hanger"></div>
+            <div class="gondola-car">
+                <div class="gondola-window"></div>
+                <div class="gondola-window"></div>
+            </div>
+        </div>
+    </div>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <span class="footer-legal">Snow<sup>z</sup>Up Inc. ©2026.</span>
+            <div class="footer-links">
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Marketing Opt-in Policy</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            document.body.style.setProperty('--x', `${x}px`);
+            document.body.style.setProperty('--y', `${y}px`);
+        });
+
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('#nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            const isOpen = navMenu.classList.toggle('is-open');
+            hamburger.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
+                navMenu.classList.remove('is-open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Snow falling animation (continuous)
+        const button = document.querySelector('.contact-btn');
+        setInterval(() => {
+            createSnowflake();
+        }, 180);
+
+        // Zig-zag line animation on button click
+        button.addEventListener('click', () => {
+            drawZigzagLine();
+        });
+
+        function createSnowflake() {
+            const circle = document.createElement('div');
+            circle.classList.add('snowflake');
+            
+            // Random size between 4px and 20px for depth
+            const size = Math.random() * 16 + 4;
+            circle.style.width = size + 'px';
+            circle.style.height = size + 'px';
+            circle.style.left = Math.random() * window.innerWidth + 'px';
+            
+            // Vary animation duration based on size (larger = faster, closer to foreground)
+            const duration = Math.random() * 2 + 2 - (size / 20);
+            circle.style.animationDuration = duration + 's';
+            
+            // Adjust opacity based on size (smaller = more transparent for background effect)
+            circle.style.opacity = 0.4 + (size / 20) * 0.6;
+            
+            document.body.appendChild(circle);
+
+            setTimeout(() => {
+                circle.remove();
+            }, 4000);
+        }
+
+        function drawZigzagLine() {
+            // Create SVG container
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.classList.add('zigzag-line');
+            
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            
+            // Create 3 random zig-zag lines
+            for (let lineNum = 0; lineNum < 3; lineNum++) {
+                const points = [];
+                const steps = Math.floor(Math.random() * 6) + 8; // 8-13 steps for variation
+                const amplitude = Math.random() * 30 + 20; // Random horizontal offset for zig-zag
+                
+                // Start from lower left
+                points.push([0, height]);
+                
+                // Create zig-zag pattern moving up and right
+                for (let i = 1; i <= steps; i++) {
+                    const x = (i / steps) * width;
+                    const y = height - (i / steps) * height;
+                    
+                    // Add random horizontal offset for zig-zag variation
+                    const offset = (i % 2 === 0 ? amplitude : -amplitude) * (Math.random() * 0.5 + 0.5);
+                    points.push([x + offset, y]);
+                }
+                
+                // Create polyline element
+                const polyline = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+                const pointsString = points.map(p => p.join(',')).join(' ');
+                polyline.setAttribute('points', pointsString);
+                
+                // Calculate total length for stroke-dasharray
+                const totalLength = points.reduce((sum, point, index) => {
+                    if (index === 0) return sum;
+                    const prev = points[index - 1];
+                    const dx = point[0] - prev[0];
+                    const dy = point[1] - prev[1];
+                    return sum + Math.sqrt(dx * dx + dy * dy);
+                }, 0);
+                
+                polyline.style.strokeDasharray = totalLength;
+                svg.appendChild(polyline);
+            }
+            
+            document.body.appendChild(svg);
+            
+            // Remove after animation completes
+            setTimeout(() => {
+                svg.remove();
+            }, 250);
+        }
+    </script>
+</body>
+</html>
