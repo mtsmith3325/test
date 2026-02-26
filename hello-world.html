@@ -4,16 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello World</title>
+    <link rel="icon" href="ac17d3aa57c7c536a88fdf55a1409a00.jpg" type="image/jpeg">
     <link rel="stylesheet" href="hello-world.css">
+    <link rel="stylesheet" href="styles/weather-widget.css">
 </head>
 <body>
     <nav class="navbar">
         <span class="logo">SNOW<sup>z</sup></span>
-        <button class="hamburger" type="button" aria-expanded="false" aria-controls="nav-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <div class="nav-actions">
+            <div class="nav-links">
+                <a href="#">Plan My trip</a>
+                <a href="#">Trip Inspo</a>
+                <a href="#">Easy Book</a>
+            </div>
+            <button class="hamburger" type="button" aria-expanded="false" aria-controls="nav-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
         <div class="nav-menu" id="nav-menu">
             <a href="#">Explore Mountains</a>
             <a href="#">Set A Budget</a>
@@ -50,6 +59,11 @@
             </div>
         </div>
     </section>
+    <section class="weather-section" aria-label="Weather Dashboard">
+        <div id="weather-container" class="weather-grid">
+            <!-- Weather cards will be dynamically inserted here -->
+        </div>
+    </section>
     <div class="gondola">
         <div class="gondola-carrier">
             <div class="gondola-line"></div>
@@ -70,6 +84,8 @@
             </div>
         </div>
     </footer>
+    <script src="data/locations.js"></script>
+    <script src="scripts/weather-widget.js"></script>
     <script>
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX;

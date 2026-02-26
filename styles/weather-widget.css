@@ -1,0 +1,76 @@
+.weather-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.weather-card {
+    background: transparent;
+    border-radius: 12px;
+    padding: 1.5rem;
+    color: white;
+    box-shadow: none;
+}
+
+.weather-card.loading {
+    background: transparent;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.location-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.temperature {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin: 0.5rem 0;
+}
+
+.weather-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.weather-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.weather-icon {
+    width: 14px;
+    height: 14px;
+    display: inline-flex;
+    color: white;
+    flex-shrink: 0;
+}
+
+.weather-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.error-card {
+    background: transparent;
+    border: none;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .weather-grid {
+        grid-template-columns: 1fr;
+    }
+}
