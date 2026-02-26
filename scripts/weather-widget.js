@@ -15,7 +15,7 @@ class WeatherWidget {
 
         try {
             const response = await fetch(
-                `http://www.7timer.info/bin/api.pl?lon=${location.lon}&lat=${location.lat}&product=civil&output=json`
+                `https://www.7timer.info/bin/api.pl?lon=${location.lon}&lat=${location.lat}&product=civil&output=json`
             );
 
             if (!response.ok) throw new Error('Weather data unavailable');

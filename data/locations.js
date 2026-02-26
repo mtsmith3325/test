@@ -1,20 +1,20 @@
 const LOCATIONS = [
     {
         name: "Mammoth Mountain",
-        lat: 40.7128,
-        lon: -74.0060,
-        timezone: "America/New_York"
+        lat: 37.6308,
+        lon: -119.0326,
+        timezone: "America/Los_Angeles"
     },
     {
         name: "Park City", 
-        lat: 51.5074,
-        lon: -0.1278,
-        timezone: "Europe/London"
+        lat: 40.6461,
+        lon: -111.4980,
+        timezone: "America/Denver"
     },
     {
         name: "Killington",
-        lat: 35.6762,
-        lon: 139.6503,
-        timezone: "Asia/Tokyo"
+        lat: 43.6266,
+        lon: -72.7967,
+        timezone: "America/New_York"
     }
 ];
