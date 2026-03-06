@@ -4,7 +4,7 @@ const path = require('path');
 
 const SYSTEM_PROMPT = fs.readFileSync(path.join(process.cwd(), 'tech-briefs/snowboard_llm_system_prompt.txt'), 'utf8');
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   const { message } = req.body;
   const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
