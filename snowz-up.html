@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="snowz-up.css">
     <link rel="stylesheet" href="styles/weather-widget.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav class="navbar">
@@ -180,14 +181,17 @@
 
         // Snow falling animation (continuous)
         const button = document.querySelector('.contact-btn');
+
         setInterval(() => {
             createSnowflake();
         }, 180);
 
-        // Zig-zag line animation on button click
-        button.addEventListener('click', () => {
-            drawZigzagLine();
-        });
+        // Zig-zag line animation on button click (guard for null)
+        if (button) {
+            button.addEventListener('click', () => {
+                drawZigzagLine();
+            });
+        }
 
         function createSnowflake() {
             const circle = document.createElement('div');
