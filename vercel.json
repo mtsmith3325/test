@@ -3,17 +3,10 @@
   "framework": null,
   "builds": [
     { "src": "api/chat.js", "use": "@vercel/node" },
-    { "src": "index.html", "use": "@vercel/static" },
-    { "src": "styles/(.*)", "use": "@vercel/static" },
-    { "src": "snowz-up.css", "use": "@vercel/static" },
-    { "src": "style.css", "use": "@vercel/static" },
-    { "src": "src/assets/imgs/(.*)", "use": "@vercel/static" }
+    { "src": "**/*", "use": "@vercel/static" }
   ],
   "routes": [
     { "src": "/api/chat", "dest": "/api/chat.js" },
-    { "src": "/styles/(.*)", "dest": "/styles/$1" },
-    { "src": "/snowz-up.css", "dest": "/snowz-up.css" },
-    { "src": "/style.css", "dest": "/style.css" },
     { "src": "/", "dest": "/index.html" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
